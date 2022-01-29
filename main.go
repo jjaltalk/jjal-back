@@ -11,5 +11,11 @@ func main() {
 		})
 	})
 
+	router.GET("/hongseok", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"Hello": "Hongseok",
+		})
+	})
+
 	router.Run(":5000")
 }

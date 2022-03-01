@@ -17,6 +17,11 @@ type Emoji struct {
 }
 
 func main() {
+	setDatabaseConfig()
+	setRouterConfig()
+}
+
+func setDatabaseConfig() *gorm.DB {
 	dsn := "root:lostfinder123@tcp(127.0.0.1:3306)/jjal_talk?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
@@ -26,6 +31,10 @@ func main() {
 
 	db.AutoMigrate(&Emoji{})
 
+	return db
+}
+
+func setRouterConfig() {
 	router := gin.Default()
 
 	router.GET("/", func(c *gin.Context) {
